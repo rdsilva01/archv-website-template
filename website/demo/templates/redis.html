@@ -1,0 +1,50 @@
+{% extends "skeleton.html" %}
+
+{% block title %}Redis Documents{% endblock %}
+
+{% block content %}
+    <div class="px-md-5 mt-4">
+         <h1 class="libre-baskerville-bold">News Articles</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item source-sans-3 fw-light"><a>News Articles</a></li>
+                <li class="breadcrumb-item active source-sans-3 fw-light"><a>Documents</a></li>
+            </ol>
+        </nav>
+    </div>
+   
+
+    <div class="container-fluid px-md-5">
+        <div class="row">
+            {% for key, value in news_articles %}
+            <div class="col-md-6 col-lg-4  mb-5">
+                <div class="card h-100 border-0 d-flex flex-column">
+                    <figure>
+                        <img
+                            class="img-fluid"
+                            style="height: 300px; object-fit: cover; width: 100%;"
+                            src="{{value.image}}"
+                            alt="Image" />
+                    </figure>
+                    <div class="card-body p-0 m-0 d-flex flex-column">
+                        <h1 class="card-title fs-4 libre-baskerville-bold">{{ value.date }}</h1>
+                        <h2 class="fs-4 libre-baskerville-regular">{{ value.title }}</h2>
+                        <p class="fs-5 source-sans-3 fw-light mb-1">{{ value.text[:100] }}...</p>
+                        <p class="fs-6 source-sans-3 fw-light"> by <span class="fw-normal">{{ value.author }}</span></p>
+                    </div>
+                </div>
+            </div>            
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="pagination justify-content-center bg-blue">
+        {{ pagination.links }}
+    </div>
+
+    <!-- Small Pagination Controls -->
+    <!-- <div class="pagination justify-content-center">
+        {{ small_pagination.links }}
+    </div> -->
+
+{% endblock %}
